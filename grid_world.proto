@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option csharp_namespace = "GWSimulation";
+
 enum GWAction {
   UNKNOWN = 0;
   NOTHING = 1;
@@ -27,7 +29,7 @@ message GWDroneAction {
 }
 
 message GWActionRequest {
-  repeated GWDroneAction action = 1;
+  repeated GWDroneAction actions = 1;
 }
 
 message GWActionResponse {
