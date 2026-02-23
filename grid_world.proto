@@ -29,7 +29,8 @@ message GWDroneAction {
 }
 
 message GWActionRequest {
-  repeated GWDroneAction actions = 1;
+  int64 id = 1
+  repeated GWDroneAction actions = 2;
 }
 
 message GWActionResponse {
