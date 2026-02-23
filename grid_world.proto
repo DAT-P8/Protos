@@ -31,7 +31,7 @@ message GWActionRequest {
 }
 
 message GWActionResponse {
-  oneof {
+  oneof state_or_error {
     GWState state = 1;
     string error_message = 2;
   }
@@ -52,7 +52,7 @@ message GWCloseRequest {
 message GWCloseResponse {}
 
 service GWSimulation {
-  rpc DoStep (ActionRequest) returns (ActionResponse) {}
-  rpc Reset (ResetRequest) returns (ResetResponse) {}
-  rpc Close (CloseRequest) returns (CloseResponse) {}
+  rpc DoStep (GWActionRequest) returns (GWActionResponse) {}
+  rpc Reset (GWResetRequest) returns (GWResetResponse) {}
+  rpc Close (GWCloseRequest) returns (GWCloseResponse) {}
 }
