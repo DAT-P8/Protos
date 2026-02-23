@@ -12,9 +12,10 @@ enum GWAction {
 }
 
 message GWDroneState {
-  int64 x = 1;
-  int64 y = 2;
-  bool destroyed = 3;
+  int64 id = 1;
+  int64 x = 2;
+  int64 y = 3;
+  bool destroyed = 4;
 }
 
 message GWState {
