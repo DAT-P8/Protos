@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+enum GWAction {
+  UNKNOWN = 0;
+  NOTHING = 1;
+  LEFT = 2;
+  RIGHT = 3;
+  UP = 4;
+  DOWN = 5;
+}
+
+message GWDroneState {
+  int64 x = 1;
+  int64 y = 2;
+  bool destroyed = 3;
+}
+
+message GWState {
+  bool terminated = 1;
+  repeated GWDroneState defender_drone_states = 2;
+  repeated GWDroneState evader_drone_states = 3;
+}
+
+message GWDroneAction {
+  int64 id = 1;
+  GWAction action = 2;
+}
+
+message GWActionRequest {
+  repeated GWDroneAction action = 1;
+}
+
+message GWActionResponse {
+  oneof {
+    GWState state = 1;
+    string error_message = 2;
+  }
+}
+
+message GWResetRequest {
+  int64 id = 1;
+}
+
+message GWResetResponse {
+  GWState state = 1;
+}
+
+message GWCloseRequest {
+  int64 id = 1;
+}
+
+message GWCloseResponse {}
+
+service GWSimulation {
+  rpc DoStep (ActionRequest) returns (ActionResponse) {}
+  rpc Reset (ResetRequest) returns (ResetResponse) {}
+  rpc Close (CloseRequest) returns (CloseResponse) {}
+}
