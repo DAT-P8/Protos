@@ -20,7 +20,8 @@ message TDFDroneState {
 
 message TDFState {
   bool terminated = 1;
-  repeated TDFDroneState drone_states = 2;
+  int64 sim_id = 2;
+  repeated TDFDroneState drone_states = 3;
 }
 
 message TDFDroneAction {
@@ -37,7 +38,10 @@ message TDFDoStepRequest {
 }
 
 message TDFDoStepResponse {
-  TDFState state = 1;
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
 }
 
 message TDFResetRequest {
@@ -45,20 +49,27 @@ message TDFResetRequest {
 }
 
 message TDFResetResponse {
-  TDFState state = 1;
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
 }
 
 message TDFCloseRequest {
   int64 id = 1;
 }
 
-message TDFCloseResponse {}
+message TDFCloseResponse {
+  optional string error_msg = 1;
+}
 
 message TDFNewRequest {}
 
 message TDFNewResponse {
-  int64 id = 1;
-  TDFState state = 2;
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
 }
 
 service TDFSimulation {
