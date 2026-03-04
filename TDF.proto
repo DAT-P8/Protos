@@ -29,8 +29,6 @@ message TDFDroneAction {
   float x_f = 2;
   float y_f = 3;
   float z_f = 4;
-
-  TDFAction action = 5;
 }
 
 message TDFDoStepRequest {
