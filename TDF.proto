@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 // This is to make sure gRPC doesn't clutter the global namespace.
-option csharp_namespace = "TDF";
+option csharp_namespace = "TDFSimulation";
 
 message TDFDroneState {
   int64 id = 1;
