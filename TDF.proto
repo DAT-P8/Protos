@@ -63,7 +63,13 @@ message TDFCloseResponse {
   optional string error_msg = 1;
 }
 
-message TDFNewRequest {}
+message TDFNewRequest {
+  int32 evader_count = 1;
+  int32 pursuer_count = 2;
+  float evader_dome_radius = 3;
+  float pursuer_dome_radius = 4;
+  float arena_dome_radius = 5;
+}
 
 message TDFNewResponse {
   oneof error_case {
