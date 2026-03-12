@@ -69,6 +69,8 @@ message TDFNewRequest {
   float evader_dome_radius = 3;
   float pursuer_dome_radius = 4;
   float arena_dome_radius = 5;
+  float drone_max_speed = 6;
+  int32 seed = 7;
 }
 
 message TDFNewResponse {
