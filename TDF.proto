@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+// This is to make sure gRPC doesn't clutter the global namespace.
+option csharp_namespace = "TDFSimulation";
+
+message TDFDroneState {
+  int64 id = 1;
+
+  float x = 2;
+  float y = 3;
+  float z = 4;
+
+  float x_v = 5;
+  float y_v = 6;
+  float z_v = 7;
+
+  bool destroyed = 8;
+  bool is_evader = 9;
+}
+
+message TDFState {
+  bool terminated = 1;
+  int64 sim_id = 2;
+  repeated TDFDroneState drone_states = 3;
+}
+
+message TDFDroneAction {
+  int64 id = 1;
+
+  float x_f = 2;
+  float y_f = 3;
+  float z_f = 4;
+}
+
+message TDFDoStepRequest {
+  int64 id = 1;
+  repeated TDFDroneAction drone_actions = 2;
+}
+
+message TDFDoStepResponse {
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
+}
+
+message TDFResetRequest {
+  int64 id = 1;
+}
+
+message TDFResetResponse {
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
+}
+
+message TDFCloseRequest {
+  int64 id = 1;
+}
+
+message TDFCloseResponse {
+  optional string error_msg = 1;
+}
+
+message TDFNewRequest {
+  int32 evader_count = 1;
+  int32 pursuer_count = 2;
+  float evader_dome_radius = 3;
+  float pursuer_dome_radius = 4;
+  float arena_dome_radius = 5;
+  float drone_max_speed = 6;
+  int32 seed = 7;
+}
+
+message TDFNewResponse {
+  oneof error_case {
+    TDFState state = 1;
+    string error_msg = 2;
+  }
+}
+
+service TDFSimulation {
+  rpc DoStep (TDFDoStepRequest) returns (TDFDoStepResponse) {}
+
+  rpc New (TDFNewRequest) returns (TDFNewResponse) {}
+
+  rpc Reset (TDFResetRequest) returns (TDFResetResponse) {}
+
+  rpc Close (TDFCloseRequest) returns (TDFCloseResponse) {}
+}
