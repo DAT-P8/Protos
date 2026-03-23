@@ -30,6 +30,16 @@ message GWDroneState {
   bool is_evader = 5;
 }
 
+// This represents the states of the simulation
+enum SimStates{
+    Unknown = 0;
+    Running = 1;
+    EvadersCaptured = 2;
+    EvadersCrashed = 3;
+    TargetReached = 4;
+    PursuersCrashed = 5;
+    TimeExceeded = 6;
+}
 
 // This is the GridWorld state.
 // It is the state of each drone, and
@@ -37,8 +47,11 @@ message GWDroneState {
 // Termination of a simulation may be done by the server.
 // E.g. evader reaches target, or evader is destroyed or fled.
 message GWState {
-  bool terminated = 1;
-  repeated GWDroneState drone_states = 2;
+  SimStates simulation_state = 1;
+  int32 obstacles = 2;
+  int32 target_x = 3;
+  int32 target_y = 4;
+  repeated GWDroneState drone_states = 5;
 }
 
 
