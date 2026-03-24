@@ -48,9 +48,6 @@ enum SimStates{
 // E.g. evader reaches target, or evader is destroyed or fled.
 message GWState {
   SimStates simulation_state = 1;
-  int32 obstacles = 2;
-  int32 target_x = 3;
-  int32 target_y = 4;
   repeated GWDroneState drone_states = 5;
 }
 
@@ -110,8 +107,13 @@ message GWCloseResponse {}
 
 // The request from calls to New
 // The client asks for a new simulation.
-// This is an empty request.
-message GWNewRequest {}
+// Information about the environment is passed 
+message GWNewRequest {
+  int32 map_size = 1;
+  int32 target_x = 2;
+  int32 target_y = 3;
+  int32 time_limit = 4;
+}
 
 // The response returned from calls to New
 // Contains the initial state and the id of the simulation
