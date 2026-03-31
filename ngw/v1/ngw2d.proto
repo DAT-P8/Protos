@@ -57,6 +57,8 @@ message MapSpec {
 message SquareMap {
   int64 width = 1;
   int64 height = 2;
+  int64 target_x = 3;
+  int64 target_y = 4;
 }
 
 message NGWDroneAction {
@@ -93,6 +95,7 @@ message NewRequest {
   MapSpec map = 1;
   int64 evader_count = 2;
   int64 pursuer_count = 3;
+  int64 drone_velocity = 4;
 }
 
 message NewResponse {
