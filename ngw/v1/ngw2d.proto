@@ -8,9 +8,13 @@ enum Action {
   ACTION_UNKNOWN_UNSPECIFIED = 0;
   ACTION_NOTHING = 1;
   ACTION_LEFT = 2;
-  ACTION_RIGHT = 3;
+  ACTION_LEFT_UP = 3;
   ACTION_UP = 4;
-  ACTION_DOWN = 5;
+  ACTION_RIGHT_UP = 5;
+  ACTION_RIGHT = 6;
+  ACTION_RIGHT_DOWN = 7;
+  ACTION_DOWN = 8;
+  ACTION_LEFT_DOWN = 9;
 }
 
 message DroneState {
@@ -64,6 +68,7 @@ message SquareMap {
 message DroneAction {
   int64 id = 1;
   Action action = 2;
+  int64 velocity = 3;
 }
 
 message StateResponse {
