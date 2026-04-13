@@ -18,19 +18,8 @@ message TDFDroneState {
   bool is_evader = 9;
 }
 
-// This represents the states of the simulation
-enum SimStates{
-    Unknown = 0;
-    Running = 1;
-    EvadersCaptured = 2;
-    EvadersCrashed = 3;
-    TargetReached = 4;
-    PursuersCrashed = 5;
-    TimeExceeded = 6;
-}
-
 message TDFState {
-  SimStates simulation_state = 1;
+  bool terminated = 1;
   int64 sim_id = 2;
   repeated TDFDroneState drone_states = 3;
 }
