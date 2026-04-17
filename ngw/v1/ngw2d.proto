@@ -37,6 +37,7 @@ message Event {
     CollisionEvent collision_event = 1;
     TargetReachedEvent target_reached_event = 2;
     OutOfBoundsEvent out_of_bounds_event = 3;
+    PursuerEnteredTargetEvent pursuer_entered_target_event = 4;
   }
 }
 
@@ -49,6 +50,10 @@ message TargetReachedEvent {
 }
 
 message OutOfBoundsEvent {
+  repeated int64 drone_ids = 1;
+}
+
+message PursuerEnteredTargetEvent {
   repeated int64 drone_ids = 1;
 }
 
