@@ -38,7 +38,12 @@ message Event {
     TargetReachedEvent target_reached_event = 2;
     OutOfBoundsEvent out_of_bounds_event = 3;
     PursuerEnteredTargetEvent pursuer_entered_target_event = 4;
+    DroneObjectCollisionEvent drone_object_collision_event = 5;
   }
+}
+
+message DroneObjectCollisionEvent {
+  repeated int64 drone_ids = 1;
 }
 
 message CollisionEvent {
@@ -68,6 +73,19 @@ message SquareMap {
   int64 height = 2;
   int64 target_x = 3;
   int64 target_y = 4;
+
+  repeated ObjectSpec objects = 5;
+}
+
+message ObjectSpec {
+  oneof object_oneof {
+    SquareObject square_object = 1;
+  }
+}
+
+message SquareObject {
+  int64 x = 1;
+  int64 y = 2;
 }
 
 message DroneAction {
