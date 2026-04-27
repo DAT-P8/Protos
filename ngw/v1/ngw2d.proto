@@ -30,6 +30,7 @@ message State {
   bool terminated = 2;
   repeated DroneState drone_states = 3;
   repeated Event events = 4;
+  repeated ObjectSpec objects = 5;
 }
 
 message Event {
